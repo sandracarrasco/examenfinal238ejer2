@@ -1,0 +1,47 @@
+
+CREATE TABLE [Dimconsejeria] (
+    [keyConsejeria] float primary key,
+    [idConsejeria] float ,
+    [ArchivoConsejeria] float,
+    [ConsejeriaResponsable] nvarchar(255)
+    
+)
+CREATE TABLE [Dimorganismo] (
+    [keyOrganismo] float primary key,
+    [idOrganismo] float ,
+    [ArchivoOrganismo] float,
+    [OrganismoResponsable] nvarchar(255)
+    
+)
+CREATE TABLE [Dimmateria] (
+    [keyMateria] float primary key,
+    [idMateria] float ,
+    [ArchivoMateria] float,
+    [MateriaCatalogo] nvarchar(255)
+    
+)
+CREATE TABLE [Dimactualizacion] (
+    [keyActualizacion] float primary key,
+    [idActualizacion] float ,
+    [Frecuencia de actualización] nvarchar(255),
+    [ultimaActualizacion] float,
+    [Estado] nvarchar(255)
+)
+
+CREATE TABLE [fac_catalogo] (
+    
+    [Título] nvarchar(255),
+    [Tipo de Compromiso] nvarchar(255),
+    [Formatos disponibles para descarga] nvarchar(255),
+    [Enlace al contenido] nvarchar(255),
+    [keyConsejeria] float primary key ,
+    [keyOrganismo] float primary key,
+    [keyMateria] float primary key,
+    [keyActualizacion] float primary key ,
+    CONSTRAINT fk_Dimconsejeria FOREIGN KEY (keyConsejeria) REFERENCES Dimconsejeria (keyConsejeria),
+    CONSTRAINT fk_Dimorganismo FOREIGN KEY (keyOrganismo) REFERENCES Dimorganismo (keyOrganismo),
+    CONSTRAINT fk_Dimmateria FOREIGN KEY (keyMateria) REFERENCES Dimmateria(keyMateria),
+    CONSTRAINT fk_Dimactualizacion FOREIGN KEY (keyActualizacion) REFERENCES Dimactualizacion(keyActualizacion)
+
+)
+
